@@ -1,10 +1,16 @@
 from stats import get_word_count
 from stats import char_count
-from stats import restructure_dick
 from stats import sort_chars
+import sys
 
 def main():
-    path = "books/frankenstein.txt"
+    path = ""
+    if(len(sys.argv) != 2):
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    else:
+        path = sys.argv[1]
+    
     book_contents = get_book_text(path)
     word_count = get_word_count(book_contents)
     char_count_dick = char_count(book_contents)
