@@ -1,16 +1,24 @@
 from stats import get_word_count
 from stats import char_count
+from stats import restructure_dick
+from stats import sort_chars
 
 def main():
     path = "books/frankenstein.txt"
     book_contents = get_book_text(path)
     word_count = get_word_count(book_contents)
+    char_count_dick = char_count(book_contents)
+    sorted_dick = sort_chars(char_count_dick)
     
-    print_word_count = f"Found {word_count} total words"
-    print(print_word_count)
-    
-    chars = char_count(book_contents)
-    print(chars)
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {path}...")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
+    for dick in sorted_dick:
+        if dick['char'].isalpha():
+            print(f"{dick['char']}: {dick['num']}")
+    print("============= END ===============")
 
 def get_book_text(path_to_file):
     with open(path_to_file) as f:
